@@ -10,7 +10,8 @@
       <style>
         .banner {
         /* The image used */
-        background-image:url(https://i.postimg.cc/NjHvG1Gm/banner.jpg); 
+        background-image:
+        url(https://i.postimg.cc/NjHvG1Gm/banner.jpg);
         height: 50%; 
 
         /* Center and scale the image nicely */
@@ -65,46 +66,8 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="row">
-                <div class="column" style="background-color:rgb(235, 230, 230);">
-                 
-                  <button type="button" class="btn btn-dark btn-lg" style="border-radius: 30px; width: 30%;" onclick="allbooksonclick()">All Books</button>
-                
-                </div>
-                
-      
-      
-      
-      
-                <div class="column" style="background-color:rgb(255, 255, 255);">
-                  
-                
-                  <button type="button" class="btn btn-dark btn-lg" style="border-radius: 30px; width: 30%;" onclick="mybooksonclick()">My Library</button>
-                
-                </div>  
-                    
-                </div>
-             </div>
-
-             <form action="/allbooks" method="POST" id="allbooksform">
-                    
-             </form>
-
-             <form action="/mybooks" method="POST" id="mybooksform">
-                    
-            </form>
-
-             <script type="text/javascript">
-                function allbooksonclick(){
-                    document.getElementById("allbooksform").submit();
-                }
-
-                function mybooksonclick(){
-                    document.getElementById("mybooksform").submit();
-                }
-             </script>
-        <!-- <h1>Hello World !!</h1> -->
+       
+        <h1>My Books page</h1>
 
     </body>
 </html>
