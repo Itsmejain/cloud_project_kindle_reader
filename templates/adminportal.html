@@ -31,23 +31,27 @@
                         <h5 class="fw-bold mb-3 pb-3" style="letter-spacing: 2px;">Add Book</h5>
                         <!-- Name field -->
                         <div class="form-outline mb-0">
-                            <input type="text" id="bookname" name="bookname" class="form-control form-control-lg" />
-                            <label style="color: #74747c;" class="form-label" for="bookname">Book Name</label>
+                          <label style="color: #74747c;" class="form-label" for="bookname">Book Name</label>
+                            <input type="text" id="bookname" name="bookname" class="form-control form-control-lg" required />
+                            
                         </div>
                         <!-- username field -->
                         <div class="form-outline mb-0">
-                          <input type="text" id="bookdesc" name="bookdesc" class="form-control form-control-lg" />
                           <label style="color: #74747c;" class="form-label" for="bookdesc">Book Description</label>
+                          <input type="text" id="bookdesc" name="bookdesc" class="form-control form-control-lg" required/>
+                          
                         </div>
                         <!-- email field -->
                         <div class="form-outline mb-0">
-                            <input type="file" id="bookcover" name="bookcover" class="form-control form-control-lg" />
-                            <label style="color: #74747c;" class="form-label" for="bookcover">Upload Book Cover Image</label>
+                          <label style="color: #74747c;" class="form-label" for="bookcover">Upload Book Cover Image</label>
+                            <input type="file" id="bookcover" name="bookcover" class="form-control form-control-lg" required />
+                           
                         </div>
                         
                         <div class="form-outline mb-0">
-                            <input type="file" id="bookpdf" name="bookpdf" class="form-control form-control-lg" />
-                            <label style="color: #74747c;" class="form-label" for="bookpdf">Upload Book PDF</label>
+                          <label style="color: #74747c;" class="form-label" for="bookpdf">Upload Book PDF</label>
+                            <input type="file" id="bookpdf" name="bookpdf" class="form-control form-control-lg" required />
+                            
                         </div>
                         <br>
                         <div class="pt-6 mb-5">
@@ -56,7 +60,11 @@
                         
                        
                       </form>
-      
+                      <div>
+                        {% autoescape off %}
+                        {{message}}
+                        {% endautoescape %}
+                      </div>
                     </div>
                   </div>
                 </div>

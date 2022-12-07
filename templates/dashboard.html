@@ -60,7 +60,7 @@
     <body>
         <div class="banner">
             <div>
-                
+                <div>{{username}}</div>
                 <button class="btn btn-success button2 fa fa-home" onclick="logout()"">Logout</button>
             </div>
         </div>
@@ -103,6 +103,24 @@
                 function mybooksonclick(){
                     document.getElementById("mybooksform").submit();
                 }
+
+                // document.addEventListener('DOMContentLoaded', function() {
+                  // your code here
+                  const errormsg = "{{errormsg}}"
+                                console.log(errormsg)
+                                if (errormsg != ""){
+                                  alert("Book Not Available");
+                                  allbooksonclick();
+                                }
+                                  
+                // }, false);
+              
+                  
+                
+                // else{
+                //   alert("ALERT FROM DASHBOARD Book Not Available");
+                // }
+
              </script>
         <!-- <h1>Hello World !!</h1> -->
 

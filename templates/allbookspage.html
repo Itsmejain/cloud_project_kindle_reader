@@ -96,8 +96,8 @@ box-shadow: 0 0 12px rgb(63, 63, 63);
         </div>
 
        
-        <h1>All Books page</h1>
-        <p>{{booksdata}}</p>
+        <!-- <h1>All Books page</h1>
+        <p></p> -->
 
         <div class = "card-container justify-content-center"  id="row-container">
             <template>
@@ -118,7 +118,18 @@ box-shadow: 0 0 12px rgb(63, 63, 63);
           </div>
         </template>
         </div>
+
+        <form action="/readnowfunction" method="POST" id="readnowbookform">
+          <input type="hidden" name="readnowbookid" id="readnowbookid">
+        
+        </form>
        <script>
+          const errormsg = "{{errormsg}}"
+                console.log(errormsg)
+                if (errormsg != ""){
+                  alert("Book Not Available");
+                }
+
          const json_data = {{ booksdata|tojson  }};
             console.log(json_data);
             console.log(json_data.length);
@@ -162,7 +173,7 @@ box-shadow: 0 0 12px rgb(63, 63, 63);
               <div class="card-title"><b>${element.book_title}</b></div>
             <div class="card-subtitle">${element.book_description}</div>
               
-              <button class="btn btn-secondary" onclick="readmore('${element.book_title}')">Read More..</button>
+              <button class="btn btn-secondary" onclick="readnow('${element.book_id}')">Read Now..</button>
             </div></div>`;
 
             // <p class="card-text">${element.description}
@@ -173,6 +184,14 @@ box-shadow: 0 0 12px rgb(63, 63, 63);
         content += '</div>'
         container.innerHTML += content;
 
+
+        function readnow(bookid){
+          
+          alert(typeof(bookid))
+          alert('bookid is '+bookid)
+          document.getElementById("readnowbookid").value = bookid;
+          document.getElementById("readnowbookform").submit();
+        }
        </script> 
     </body>
 </html>
