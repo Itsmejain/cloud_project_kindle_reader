@@ -13,8 +13,10 @@ from cryptography.fernet import Fernet
 import webbrowser
 from flask_session.__init__ import Session
 # from flask.ext.session import Session
-    
+import pymysql
 # import Session
+
+
 
 
 key = bytes.fromhex("47513459507931446361376559686c66394971506f4353725a34453846664354413155506f4f6e4a7755493d")
@@ -65,7 +67,8 @@ def testfunction(bookpdfname):
 # @app.route("/")
 @app.route("/index")
 def home():
-
+    if 'username' not in session:
+        return render_template('login.html')
 
 
     bookid = "midsem"
@@ -113,7 +116,13 @@ def login():
             passwd ="",
             database = "bookdb"
             )
-            cursorObject = dataBase.cursor(buffered=True) 
+            # dataBase  = pymysql.connect(
+            #     host=cred.RDS_HOST_NAME,
+            #     user=cred.RDS_USERNAME,
+            #     password=cred.RDS_PASSWORD,
+            #     port=cred.RDS_PORT_NUMBER,
+            #     db = 'bookdb')
+            cursorObject = dataBase.cursor() 
             sql = "SELECT username, password FROM user WHERE username='"+username+"'"
             cursorObject.execute(sql)
             result = cursorObject.fetchall()
@@ -139,7 +148,7 @@ def login():
 
 
 
-
+@app.route("/")  
 @app.route("/register",methods=['POST','GET'])
 def register():
     name = ""
@@ -152,8 +161,9 @@ def register():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
+        print("register method flask ::",name,username,email,password)
 
-        if name=="":
+        if name=="":    
             msg='''<p style="text-shadow: 2px; font-size: 20px; color: red;"><b>Enter a valid name</b></p>'''
             return render_template('register.html', message=msg)
         elif username=="":
@@ -167,13 +177,21 @@ def register():
             return render_template('register.html', message=msg)
         
         else:
+
+            # dataBase  = pymysql.connect(
+            #     host=cred.RDS_HOST_NAME,
+            #     user=cred.RDS_USERNAME,
+            #     password=cred.RDS_PASSWORD,
+            #     port=cred.RDS_PORT_NUMBER,
+            #     db = 'bookdb')
+
             dataBase = mysql.connector.connect(
             host ="localhost",
             user ="root",
             passwd ="",
             database = "bookdb"
             )
-            cursorObject = dataBase.cursor(buffered=True) 
+            cursorObject = dataBase.cursor() 
             
             sql = "SELECT * FROM user WHERE username='"+username+"'"
             cursorObject.execute(sql)
@@ -238,6 +256,12 @@ def addbookfunctionality():
     passwd ="",
     database = "bookdb"
     )
+    # dataBase  = pymysql.connect(
+    #             host=cred.RDS_HOST_NAME,
+    #             user=cred.RDS_USERNAME,
+    #             password=cred.RDS_PASSWORD,
+    #             port=cred.RDS_PORT_NUMBER,
+    #             db = 'bookdb')
     # print(dataBase)
     cursorObject = dataBase.cursor()
     bookcoverimagepath = 'uploads/'+str(bookid)+".jpg"
@@ -332,7 +356,7 @@ def convertToBinaryData(filename):
 
 
 
-@app.route("/")  
+# @app.route("/")  
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
@@ -341,6 +365,12 @@ def dashboard():
 @app.route("/allbooks",methods=['GET','POST'])
 def allbooks():
 
+    # dataBase  = pymysql.connect(
+    #             host=cred.RDS_HOST_NAME,
+    #             user=cred.RDS_USERNAME,
+    #             password=cred.RDS_PASSWORD,
+    #             port=cred.RDS_PORT_NUMBER,
+    #             db = 'bookdb')
     dataBase = mysql.connector.connect(
     host ="localhost",
     user ="root",

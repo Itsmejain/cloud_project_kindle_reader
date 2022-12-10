@@ -68,10 +68,8 @@ right: 16px;
     </style>
   </head>
     <body>
-      {{bookid}}<br><br><br><br><br><br>
-
-      <iframe src="{{file}}#page={{pagenumber}}" width="30%" height="2100px" id="iframepdf"></iframe>
-      
+      <iframe src="midsem.pdf" width="300px" height="2100px"></iframe>
+      <embed src="midsem.pdf" width="300px" height="2100px"/>
       <!-- <div class="banner">
         <div>
             <div>{{username}}</div>
@@ -101,19 +99,6 @@ right: 16px;
 
     
       
-      <script>
-      
 
-
-       
-        console.log("pdffilename---->")
-        const pdffilename = "{{filename}}"
-        console.log(pdffilename)
-        console.log(typeof(pdffilename))
-        let srclink = "dummy"
-        
-        console.log(srclink)
-
-      </script>
     </body>
 </html>
